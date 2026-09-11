@@ -1,0 +1,47 @@
+/* sgl-tui — btop-style theme */
+
+Screen {
+    background: #070a0f;
+}
+
+#header {
+    height: 1;
+    background: #0d1117;
+    color: #d7d7d7;
+    padding: 0 1;
+}
+
+#main {
+    layout: grid;
+    grid-size: 2 3;
+    grid-gutter: 0 1;
+    height: 1fr;
+}
+
+.panel {
+    height: 100%;
+    border: round #1f6f8b;
+    padding: 0 1;
+    background: #0b0f14;
+}
+
+.panel > .bar--title {
+    color: #00d7ff;
+}
+
+#footer {
+    height: 1;
+    background: #0d1117;
+    color: #5f8787;
+    padding: 0 1;
+}
+
+Gauge, StackedGauge, StatRow {
+    height: 1;
+    width: 1fr;
+}
+
+ChartRow {
+    height: 1;
+    width: 1fr;
+}

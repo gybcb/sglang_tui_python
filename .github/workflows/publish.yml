@@ -1,0 +1,21 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  id-token: write  # Trusted Publishing to PyPI (no API token needed)
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv build
+      # Requires a Trusted Publisher for this repo on pypi.org.
+      # Fallback with an API token: uv publish --token ${{ secrets.PYPI_TOKEN }}
+      - run: uv publish --trusted-publishing always

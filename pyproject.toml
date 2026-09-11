@@ -1,0 +1,45 @@
+[project]
+name = "sglang-tui"
+version = "0.1.0"
+description = "btop-style terminal dashboard for SGLang inference servers"
+readme = "README.md"
+license = "MIT"
+keywords = ["sglang", "tui", "terminal", "dashboard", "monitoring", "llm", "inference", "prometheus"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Programming Language :: Python :: 3",
+    "Topic :: System :: Monitoring",
+    "Topic :: Terminals",
+]
+authors = [
+    { name = "gybcb", email = "gybcb@hotmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.28.1",
+    "textual>=8.2.8",
+]
+
+[project.urls]
+Homepage = "https://github.com/gybcb/sglang_tui"
+Repository = "https://github.com/gybcb/sglang_tui"
+Issues = "https://github.com/gybcb/sglang_tui/issues"
+
+[build-system]
+requires = ["uv_build>=0.11.3,<0.12.0"]
+build-backend = "uv_build"
+
+[project.scripts]
+sglang-tui = "sglang_tui.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
