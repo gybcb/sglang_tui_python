@@ -1,7 +1,9 @@
 import math
 import time
 
-from sglang_tui.prom import Differ, History, build_snapshot, gauge, parse
+import pytest
+
+from sglang_tui.prom import Differ, History, build_snapshot, gauge, is_nan, parse
 
 SNIPPET = """
 # HELP x A counter
@@ -16,6 +18,20 @@ h_bucket{le="1.0"} 10.0
 h_bucket{le="10.0"} 12.0
 h_bucket{le="+Inf"} 12.0
 """
+
+
+def test_is_nan_handles_none_finite_and_special_float_values():
+    assert is_nan(None)
+    assert is_nan(float("nan"))
+    assert not is_nan(0.0)
+    assert not is_nan(float("inf"))
+    assert not is_nan(float("-inf"))
+
+
+@pytest.mark.parametrize("value", ["NaN", object()])
+def test_is_nan_rejects_non_numeric_values(value):
+    with pytest.raises(TypeError):
+        is_nan(value)
 
 
 def test_parse_basic():
